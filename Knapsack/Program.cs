@@ -9,9 +9,9 @@ namespace Knapsack
         private readonly int[] values;
         private readonly int amountOfItems;
 
-        public ItemGenerator(int amount)
+        public ItemGenerator(int amount, int userInputSeed)
         {
-            var rand = new RandomNumberGenerator(1);
+            var rand = new RandomNumberGenerator(userInputSeed);
             amountOfItems = amount;
             values = new int[amount];
             weights = new int[amount];
@@ -66,6 +66,7 @@ namespace Knapsack
             return K[amountOfItems, capacity_is];
         }
     }
+
     class Program
     {
         static void Main(string[] args)
@@ -74,8 +75,10 @@ namespace Knapsack
             int amountOfItems = Convert.ToInt32(Console.ReadLine());
             Console.Write("Capacity: ");
             int capacity_is = Convert.ToInt32(Console.ReadLine());
+            Console.Write("RNG seed: ");
+            int rngSeed = Convert.ToInt32(Console.ReadLine());
 
-            ItemGenerator generator = new(amountOfItems);
+            ItemGenerator generator = new(amountOfItems,rngSeed);
             
 
             generator.showItems();
