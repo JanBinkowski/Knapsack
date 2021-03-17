@@ -104,9 +104,9 @@ namespace Knapsack
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Number of items: ");
+            Console.Write("Number of items: ");
             int amountOfItems = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Capacity: ");
+            Console.Write("Capacity: ");
             int capacity_is = Convert.ToInt32(Console.ReadLine());
             //            Console.WriteLine("Hello World!");
 
