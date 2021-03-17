@@ -14,7 +14,19 @@ namespace Knapsack.Tests
         [TestMethod()]
         public void KnapSackTest()
         {
-            //testy tutaj...
+            ItemGenerator ig = new ItemGenerator(5,1);
+            Algorithm algorithm = new Algorithm();
+
+            Assert.AreEqual(9, algorithm.KnapSack(10, ig.getWeights(), ig.getValues(), 5));
+        }
+
+        [TestMethod()]
+        public void KnapSackTest2()
+        {
+            ItemGenerator ig = new ItemGenerator(10,1);
+            Algorithm algorithm = new Algorithm();
+
+            Assert.AreEqual(66, algorithm.KnapSack(28, ig.getWeights(), ig.getValues(), 10));
         }
     }
 }
