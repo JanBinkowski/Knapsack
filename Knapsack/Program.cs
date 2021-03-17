@@ -11,15 +11,29 @@ namespace Knapsack
     {
         static void Main(string[] args)
         {
+            string input_n;
+            string input_c;
+            string input_rng;
             Console.Write("Number of items: ");
-            int amountOfItems = Convert.ToInt32(Console.ReadLine());
+            input_n = Console.ReadLine();
             Console.Write("Capacity: ");
-            int capacity_is = Convert.ToInt32(Console.ReadLine());
+            input_c = Console.ReadLine();
             Console.Write("RNG seed: ");
-            int rngSeed = Convert.ToInt32(Console.ReadLine());
+            input_rng = Console.ReadLine();
 
-            ItemGenerator generator = new(amountOfItems,rngSeed);
-            
+            //check if user inputs numbers
+            if ((!IsNumber(input_n)) || (!IsNumber(input_c)) || (!IsNumber(input_rng)))
+            {
+                Console.WriteLine("One of your input is not a number");
+                System.Environment.Exit(0);
+            }
+
+            int amountOfItems = Convert.ToInt32(input_n);
+            int capacity_is = Convert.ToInt32(input_c);
+            int rngSeed = Convert.ToInt32(input_rng);
+
+            ItemGenerator generator = new(amountOfItems, rngSeed);
+
 
             generator.showItems();
             
@@ -30,6 +44,15 @@ namespace Knapsack
             
           Console.WriteLine( "Solution: " + algo.KnapSack(capacity_is, weights,values, amountOfItems));
 
+        }
+
+        public static bool IsNumber(string input)
+        {
+            int value;
+            if (int.TryParse(input, out value))
+                return true;
+            else
+                return false;
         }
     }
 }
