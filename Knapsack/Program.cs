@@ -19,11 +19,9 @@ namespace Knapsack
             for (int i = 0; i < amount; i++)
             {
                 weights[i] = rand.nextInt(1, 29);
-               // values[i] = rand.nextInt(1, 29);
             }
             for (int i = 0; i < amount; i++)
             {
-                //weights[i] = rand.nextInt(1, 29);
                  values[i] = rand.nextInt(1, 29);
             }
         }
@@ -35,13 +33,6 @@ namespace Knapsack
                 Console.WriteLine("Item" + (i + 1) + " weight: " + weights[i] + " value: " + values[i]);
             }
         }
-        /*
-        public void deleteItem(int itemId)
-        {
-            weights[itemId] = 0;
-            values[itemId] = 0;
-        }
-        */
         public int[] getWeights()
         {
             return weights;
@@ -53,53 +44,6 @@ namespace Knapsack
         }
     }
 
-    /*
-    public class Algorithm
-    {
-        public void fraction(int[] weight, int[] values)
-        {
-            double a;
-            for (int i=0; i<weight.Length; i++)
-            {
-                a = (double)weight[i] / values[i];           
-            }
-        }
-    }
-    */
-    /*
-    public class Algorithm
-    {        
-        private static int getMaxIndex(int[] weight, int[] values)
-        {
-            int max_i = 0;
-            double max = 0;
-            for (int i = 0; i < weight.Length; i++)
-            {
-                if (weight[i] != 0 && (double)weight[i] / values[i] > max)
-                {
-                    max = (double)weight[i] / values[i];
-                    max_i = i;
-                }
-            }
-            return max_i;
-        }
-        public double getOptimalValue(int capacity_is, int[] values, int[] weight)
-        {
-            double value = 0.0;
-            for (int i = 0; i < weight.Length; i++)
-            {
-                if (capacity_is == 0)
-                    return value;
-                int index = getMaxIndex(weight, values);
-                int a = Math.Min(capacity_is, weight[index]);
-                value += a * (double)weight[index] / values[index];
-                weight[index] -= a;
-                capacity_is -= a;
-            }
-            return value;
-        }
-    }
-    */
     public class Algorithm
     {
         public int KnapSack(int capacity_is, int[] weights, int[] values, int amountOfItems)
@@ -130,7 +74,6 @@ namespace Knapsack
             int amountOfItems = Convert.ToInt32(Console.ReadLine());
             Console.Write("Capacity: ");
             int capacity_is = Convert.ToInt32(Console.ReadLine());
-            //            Console.WriteLine("Hello World!");
 
             ItemGenerator generator = new(amountOfItems);
             
@@ -143,13 +86,7 @@ namespace Knapsack
             Algorithm algo = new();
             
           Console.WriteLine( "Solution: " + algo.KnapSack(capacity_is, weights,values, amountOfItems));
-          
-            /*
-            foreach (var item in weights)
-            {
-                Console.WriteLine(item.ToString());
-            }
-            */
+
         }
     }
 }
