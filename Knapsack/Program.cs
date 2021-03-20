@@ -3,10 +3,6 @@ using System.Collections.Generic;
 
 namespace Knapsack
 {
-   
-
-    
-
     public class Program
     {
         static void Main(string[] args)
@@ -34,16 +30,17 @@ namespace Knapsack
 
             ItemGenerator generator = new(amountOfItems, rngSeed);
 
-
+            Console.WriteLine("");
             generator.showItems();
-            
+            Console.WriteLine("");
+
             int[] values = generator.getValues();
             int[] weights = generator.getWeights();
 
             Algorithm algo = new();
-            
-          Console.WriteLine( "Solution: " + algo.KnapSack(capacity_is, weights,values, amountOfItems));
-
+            algo.KnapSack(capacity_is, weights, values, amountOfItems).printUsesItemsStats();
+            Console.WriteLine("\nSolution:        " + algo.KnapSack(capacity_is, weights,values, amountOfItems).getResult());
+            Console.WriteLine("Solution weight: " + algo.KnapSack(capacity_is, weights, values, amountOfItems).getResultWeight());
         }
 
         public static bool IsNumber(string input)

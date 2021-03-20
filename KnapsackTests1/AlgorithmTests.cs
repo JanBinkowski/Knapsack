@@ -17,7 +17,7 @@ namespace Knapsack.Tests
             ItemGenerator ig = new ItemGenerator(5,1);
             Algorithm algorithm = new Algorithm();
 
-            Assert.AreEqual(9, algorithm.KnapSack(10, ig.getWeights(), ig.getValues(), 5));
+            Assert.AreEqual(9, algorithm.KnapSack(10, ig.getWeights(), ig.getValues(), 5).getResult());
         }
 
         [TestMethod()]
@@ -26,7 +26,7 @@ namespace Knapsack.Tests
             ItemGenerator ig = new ItemGenerator(10,1);
             Algorithm algorithm = new Algorithm();
 
-            Assert.AreEqual(66, algorithm.KnapSack(28, ig.getWeights(), ig.getValues(), 10));
+            Assert.AreEqual(66, algorithm.KnapSack(28, ig.getWeights(), ig.getValues(), 10).getResult());
         }
     }
 }

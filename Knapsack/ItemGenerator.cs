@@ -36,6 +36,7 @@ namespace Knapsack
                 Console.WriteLine("Item" + (i + 1) + " weight: " + weights[i] + " value: " + values[i]);
             }
         }
+
         public int[] getWeights()
         {
             return weights;
