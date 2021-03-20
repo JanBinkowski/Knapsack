@@ -1,26 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Windows.Forms;
+using Engine;
 
-namespace Knapsack
+
+namespace KnapsackForm
 {
-    public class Program
+    public partial class Knapsack : Form
     {
-        static void Main(string[] args)
+        public Knapsack()
+        {
+            InitializeComponent();
+        }
+
+        public void Console()
         {
             string input_n;
             string input_c;
             string input_rng;
-            Console.Write("Number of items: ");
-            input_n = Console.ReadLine();
-            Console.Write("Capacity: ");
-            input_c = Console.ReadLine();
-            Console.Write("RNG seed: ");
-            input_rng = Console.ReadLine();
+            input_n = tbN.Text;
+            input_c = tbC.Text;
+            input_rng = tbSeed.Text;
 
             //check if user inputs numbers
             if ((!IsNumber(input_n)) || (!IsNumber(input_c)) || (!IsNumber(input_rng)))
             {
-                Console.WriteLine("One of your input is not a number");
                 System.Environment.Exit(0);
             }
 
@@ -28,17 +31,16 @@ namespace Knapsack
             int capacity_is = Convert.ToInt32(input_c);
             int rngSeed = Convert.ToInt32(input_rng);
 
-            ItemGenerator generator = new(amountOfItems, rngSeed);
-
+            ItemGenerator generator = new ItemGenerator(amountOfItems, rngSeed);
 
             generator.showItems();
             
-            int[] values = generator.getValues();
+                    int[] values = generator.getValues();
             int[] weights = generator.getWeights();
 
-            Algorithm algo = new();
-            
-          Console.WriteLine( "Solution: " + algo.KnapSack(capacity_is, weights,values, amountOfItems));
+            Algorithm algo = new Algorithm();
+
+            rtbTotalValue.Text = algo.KnapSack(capacity_is, weights, values, amountOfItems).ToString();
 
         }
 
@@ -49,6 +51,11 @@ namespace Knapsack
                 return true;
             else
                 return false;
+        }
+
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

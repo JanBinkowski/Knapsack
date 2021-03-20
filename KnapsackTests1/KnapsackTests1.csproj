@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Knapsack\Knapsack.csproj" />
+    <ProjectReference Include="..\KnapsackForm\KnapsackForm.csproj" />
   </ItemGroup>
 
 </Project>
