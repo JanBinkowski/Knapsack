@@ -7,16 +7,20 @@ namespace KnapsackForm
 {
     public partial class Knapsack : Form
     {
+        private string input_n;
+        private string input_c;
+        private string input_rng;
+
+        private int totalValue = 0;
+        private string[] sequence;
+
         public Knapsack()
         {
             InitializeComponent();
         }
 
-        public void Console()
+        private void Calculate()
         {
-            string input_n;
-            string input_c;
-            string input_rng;
             input_n = tbN.Text;
             input_c = tbC.Text;
             input_rng = tbSeed.Text;
@@ -24,24 +28,26 @@ namespace KnapsackForm
             //check if user inputs numbers
             if ((!IsNumber(input_n)) || (!IsNumber(input_c)) || (!IsNumber(input_rng)))
             {
-                System.Environment.Exit(0);
+                System.Windows.Forms.MessageBox.Show("Wrong input values!");
             }
+            else
+            {
+                int amountOfItems = Convert.ToInt32(input_n);
+                int capacity_is = Convert.ToInt32(input_c);
+                int rngSeed = Convert.ToInt32(input_rng);
 
-            int amountOfItems = Convert.ToInt32(input_n);
-            int capacity_is = Convert.ToInt32(input_c);
-            int rngSeed = Convert.ToInt32(input_rng);
+                ItemGenerator generator = new ItemGenerator(amountOfItems, rngSeed);
 
-            ItemGenerator generator = new ItemGenerator(amountOfItems, rngSeed);
+                int[] values = generator.getValues();
+                int[] weights = generator.getWeights();
 
-            generator.showItems();
-            
-                    int[] values = generator.getValues();
-            int[] weights = generator.getWeights();
+                AddMoreToList(values, weights);
 
-            Algorithm algo = new Algorithm();
+                Algorithm algo = new Algorithm();
 
-            rtbTotalValue.Text = algo.KnapSack(capacity_is, weights, values, amountOfItems).ToString();
-
+                totalValue = algo.KnapSack(capacity_is, weights, values, amountOfItems);
+                SetTotalValue(totalValue.ToString());
+            }
         }
 
         public static bool IsNumber(string input)
@@ -53,9 +59,29 @@ namespace KnapsackForm
                 return false;
         }
 
+        private void SetTotalValue(string s)
+        {
+            rtbTotalValue.Text = s;
+        }
+
+        private void AddItemToList(string s)
+        {
+            lbItems.Items.Add(s);
+        }
+
+        private void AddMoreToList(int[] v, int[] w)
+        {
+            string row;
+            for(int i = 0; i<v.Length; i++)
+            {
+                row = (i+1).ToString() + "\t" + w[i].ToString() + "\t" + v[i].ToString();
+                AddItemToList(row);
+            }
+        }
+
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-
+            Calculate();
         }
     }
 }
