@@ -11,8 +11,7 @@ namespace KnapsackForm
         private string input_c;
         private string input_rng;
 
-        private int totalValue = 0;
-        private string[] sequence;
+        private Holder information;
 
         public Knapsack()
         {
@@ -45,8 +44,10 @@ namespace KnapsackForm
 
                 Algorithm algo = new Algorithm();
 
-                totalValue = algo.KnapSack(capacity_is, weights, values, amountOfItems);
-                SetTotalValue(totalValue.ToString());
+                information = algo.KnapSack(capacity_is, weights, values, amountOfItems);
+
+                PrintSequence(information.getUsedIndices());
+                SetTotalValue(information.getResult().ToString());
             }
         }
 
@@ -79,8 +80,25 @@ namespace KnapsackForm
             }
         }
 
+        private void ClearResults()
+        {
+            lbItems.Items.Clear();
+            lbItems.Items.Add("Item\tWeight\tValue");
+
+            rtbSequence.Text = "";
+        }
+
+        private void PrintSequence(int[] indices)
+        {
+            foreach (int item in indices)
+            {
+                rtbSequence.Text += "Item" + item.ToString() + ", ";
+            }
+        }
+
         private void btnGenerate_Click(object sender, EventArgs e)
         {
+            ClearResults();
             Calculate();
         }
     }

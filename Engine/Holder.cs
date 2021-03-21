@@ -11,13 +11,15 @@ namespace Engine
         //Result item statistics
         private int[] usedValues;
         private int[] usedWeights;
+        private int[] usedIndices;
         private int resultWeight = 0;
         private int resultValue = 0;
 
-        public Holder(int[] values, int[] weights)
+        public Holder(int[] values, int[] weights, int[] indices)
         {
             usedValues = values;
             usedWeights = weights;
+            usedIndices = indices;
             resultValue = 0;
             resultWeight = 0;
 
@@ -40,6 +42,11 @@ namespace Engine
             return usedValues;
         }
 
+        public int[] getUsedIndices()
+        {
+            return usedIndices;
+        }
+
         public int getResult()
         {
             return resultValue;
@@ -48,15 +55,6 @@ namespace Engine
         public int getResultWeight()
         {
             return resultWeight;
-        }
-
-        //Print used items;
-        public void printUsesItemsStats()
-        {
-            for (int i = 0; i < usedValues.Length; i++)
-            {
-                Console.WriteLine("Used item stats:" + " weight: " + usedWeights[i] + " value: " + usedValues[i]);
-            }
         }
     }
 }
